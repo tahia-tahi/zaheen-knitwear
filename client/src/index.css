@@ -7,7 +7,7 @@
   --color-primary: #EE4B21;
   --color-secondary: #07B4B0;
   --color-light: #CDF0EF;
-  --color-base: #4F4F4F;
+  --color-base: #758082;
 }
 
 /* 🌙 Dark Mode */
@@ -21,4 +21,20 @@
 
 * {
   font-family: "Roboto", sans-serif;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
