@@ -1,4 +1,4 @@
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -24,10 +24,92 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     await client.connect();
+    const userCollection = client.db('garmentsDB').collection('users');
+    const heroCollection = client.db('garmentsDB').collection('hero')
+    const productCollection = client.db('garmentsDB').collection('products')
 
-    console.log("You successfully connected to MongoDB!");
+    app.get('/api/hero', async (req, res) => {
+      const heroData = await heroCollection.findOne({})
+      res.json(heroData)
+    })
+
+    app.put("/api/hero", async (req, res) => {
+      const updatedHero = req.body;
+
+      const result = await heroCollection.updateOne(
+        {},
+        { $set: updatedHero },
+        { upsert: true }
+      );
+      res.send({
+        success: true,
+        message: "Hero updated successfully",
+        result,
+      });
+    });
+
+    app.get('/api/products', async (req, res) => {
+      const productData = await productCollection.find({}).toArray();
+      res.json(productData)
+    })
+
+    app.post('/api/products', async (req, res) => {
+      try {
+        const newProduct = req.body;
+        const result = await productCollection.insertOne(newProduct);
+
+        res.send({
+          success: true,
+          message: "Product added successfully",
+          productId: result.insertedId
+        });
+      } catch (error) {
+        res.status(500).send({
+          success: false,
+          message: "Failed to add product"
+        });
+      }
+    });
+
+    app.put('/api/products/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        const updatedProduct = req.body;
+
+        const result = await productCollection.updateOne(
+          { _id: new ObjectId(id) },
+          { $set: updatedProduct }
+        );
+
+        res.send({
+          success: true,
+          message: "Product updated successfully"
+        });
+      } catch (error) {
+        res.status(500).send({
+          success: false,
+          message: "Failed to update product"
+        });
+      }
+    });
+
+    app.delete('/api/products/:id', async (req, res) => {
+      try {
+        const id = req.params.id;
+        await productCollection.deleteOne({ _id: new ObjectId(id) });
+
+        res.send({ success: true, message: "Product deleted successfully" });
+      } catch (error) {
+        res.status(500).send({ success: false, message: "Failed to delete product" });
+      }
+    });
+
+
+
+    console.log
+      ("You successfully connected to MongoDB!");
   } finally {
-   
+
   }
 }
 run().catch(console.dir);

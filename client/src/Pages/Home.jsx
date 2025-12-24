@@ -6,6 +6,7 @@ import CustomerBadges from '../Components/CustomerBadges';
 import EmailLocation from '../Components/EmailLocation';
 import ProcessBanner from '../Components/ProcessBanner';
 import Steps from '../Components/Steps';
+import Products from '../Components/Products';
 
 const Home = () => {
     return (
@@ -17,6 +18,7 @@ const Home = () => {
             <CustomerBadges/>
             <ProcessBanner/>
             <Steps/>
+            <Products/>
         </div>
     );
 };

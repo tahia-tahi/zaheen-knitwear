@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+@plugin "daisyui";
 
 /* 🌞 Light Mode */
 @theme {
@@ -10,14 +11,6 @@
   --color-base: #758082;
 }
 
-/* 🌙 Dark Mode */
-.dark {
-  --color-primary: #6366f1;
-  --color-secondary: #4ade80;
-  --color-light: #111827;
-  --text-primary: #e5e7eb;
-  --text-inverse: #000000;
-}
 
 * {
   font-family: "Roboto", sans-serif;
