@@ -28,6 +28,36 @@ async function run() {
     const heroCollection = client.db('garmentsDB').collection('hero')
     const productCollection = client.db('garmentsDB').collection('products')
 
+    app.post('/api/users', async (req, res) => {
+      const user = req.body;
+      const query = { email: user.email };
+      const existingUser = await userCollection.findOne(query);
+
+      if (existingUser) {
+        return res.send({ message: 'User already exists' });
+      }
+      const result = await userCollection.insertOne({
+        ...user,
+        role: 'user'
+      });
+      res.send(result);
+    });
+
+    app.get('/api/users/admin/:email', async (req, res) => {
+      const email = req.params.email;
+      const user = await userCollection.findOne({ email: email });
+      let isAdmin = false;
+      if (user) {
+        isAdmin = user.role === 'admin';
+      }
+      res.send({ admin: isAdmin });
+    });
+
+    app.get('/api/users', async (req, res) => {
+      const result = await userCollection.find().toArray();
+      res.send(result)
+    })
+
     app.get('/api/hero', async (req, res) => {
       const heroData = await heroCollection.findOne({})
       res.json(heroData)

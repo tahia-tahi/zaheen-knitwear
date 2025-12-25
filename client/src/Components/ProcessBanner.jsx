@@ -5,7 +5,7 @@ import { typography } from "../style/typoghraphy";
 
 const ProcessBanner = () => {
   return (
-    <div className="w-full bg-light py-12">
+    <div className="w-full bg-light pt-12 pb-30">
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center gap-10">
 
         {/* LEFT CONTENT */}
