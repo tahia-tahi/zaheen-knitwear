@@ -38,11 +38,32 @@ Zaheen Knitwear is a modern **Full-Stack Web Application** designed for clothing
 ## 🛠️ Local Installation
 
 Follow these steps to set up the project locally:
-
 ### 1. Clone the repository
-```bash
+```
 git clone [https://github.com/your-username/zaheen-knitwear.git](https://github.com/your-username/zaheen-knitwear.git)
+```
+### 2. Frontend Setup
+* **cd client
+* **npm install
+* **npm run dev
 
+### 3. env Setup
+* **VITE_API_URL=http://localhost:3000
+*  **VITE_FIREBASE_API_KEY=your_firebase_key
+
+### 4. Backend Setup
+* **cd client
+* **npm install
+* **npm start
+
+### 5. env Setup
+* **DB_USER=your_mongodb_username
+* **DB_PASS=your_mongodb_password
+* **ACCESS_TOKEN_SECRET=your_jwt_secret
+* **PORT=3000
+
+
+```bash
 📡 API Endpoints
 Method Endpoint           Description
 GET    /api/products      Fetch all products from the database
