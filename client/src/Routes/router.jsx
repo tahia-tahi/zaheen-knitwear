@@ -7,6 +7,8 @@ import SignUp from "../Pages/SignUp";
 import AdminDashboard from "../Pages/Admin/AdminDashboard";
 import UpdateHero from "../Pages/Admin/UpdateHero";
 import ManageProducts from "../Pages/Admin/ManageProducts";
+import CartPage from "../Pages/CartPage";
+import CheckoutPage from "../Pages/CheckoutPage";
 
 export const router = createBrowserRouter([
 
@@ -43,8 +45,16 @@ export const router = createBrowserRouter([
                     {
                         path: 'manage-products',
                         Component: ManageProducts
-                    }
+                    },
                 ]
+            },
+            {
+                path:'/cart',
+                element:<CartPage></CartPage>
+            },
+            {
+                path:'/checkout',
+                element:<CheckoutPage></CheckoutPage>
             }
 
         ]

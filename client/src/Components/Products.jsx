@@ -2,10 +2,12 @@ import { ShoppingBasket } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { typography } from '../style/typoghraphy';
 import Loading from './Loading';
+import { useCart } from '../Provider/CartProvider';
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const {addToCart} = useCart()
 
   // Fetch products from backend
   useEffect(() => {
@@ -47,7 +49,7 @@ const Products = () => {
 
               {/* Buttons */}
               <div className="flex justify-between items-center gap-2 mt-4">
-                <button className={`${typography.button4} flex items-center gap-2`}>
+                <button onClick={()=>addToCart(product)} className={`${typography.button4} flex items-center gap-2`}>
                   <ShoppingBasket />
                   Add to Cart
                 </button>

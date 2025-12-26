@@ -3,12 +3,13 @@ import React, { useState, useContext } from "react";
 import { typography } from "../style/typoghraphy";
 import { AuthContext } from "../Provider/AuthContext";
 import { useNavigate } from "react-router";
+import { useCart } from "../Provider/CartProvider";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  // Get user and logOut function from Context
   const { user, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { cart } = useCart()
 
   const handleLogOut = () => {
     logOut()
@@ -37,12 +38,24 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-6">
           {user ? (
             <>
-              <div className="flex items-center gap-1 cursor-pointer">
-                <ShoppingBagIcon size={18} />
-                <span className="text-sm">Cart</span>
+              {/* Cart Icon with Dynamic Count */}
+              <div
+                onClick={() => navigate('/cart')}
+                className="flex items-center gap-1 cursor-pointer relative group"
+              >
+                <div className="relative">
+                  <ShoppingBagIcon size={20} className="group-hover:text-primary transition-colors" />
+                  {cart.length > 0 && (
+                    <span className="absolute -top-2 -right-2 bg-red-600 text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-white">
+                      {cart.reduce((total, item) => total + (item.quantity || 1), 0)}
+                    </span>
+                  )}
+                </div>
               </div>
+
+              {/* User Profile */}
               <div className="flex items-center gap-2 cursor-pointer group">
-                <img
+                <img onClick={()=> navigate('/admin-dashboard/manage-products')}
                   src={user?.photoURL || "https://i.ibb.co/mJR9Qnp/user-placeholder.png"}
                   alt="profile"
                   className="w-8 h-8 rounded-full border border-gray-200 object-cover"
@@ -52,6 +65,7 @@ const Navbar = () => {
                 </span>
               </div>
 
+              {/* Logout Button */}
               <button onClick={handleLogOut} className={typography.primaryButton}>
                 Log Out
               </button>

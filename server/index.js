@@ -41,7 +41,7 @@ async function run() {
       res
         .cookie('token', token, {
           httpOnly: true,
-          secure: false, // লোকালহোস্টের জন্য false, লাইভ সার্ভারে true হবে
+          secure: false, 
           sameSite: 'none'
         })
         .send({ success: true });
@@ -86,13 +86,12 @@ async function run() {
   try {
     const updatedHero = req.body;
     
-    // ডাটা থেকে যদি _id আসে, তবে সেটা রিমুভ করে দিন (নাহলে মঙ্গোডিবি এরর দেয়)
     const { _id, ...updateData } = updatedHero;
 
     const result = await heroCollection.updateOne(
-      {}, // খালি অবজেক্ট মানে প্রথম যে ডকুমেন্ট পাবে সেটাকেই আপডেট করবে
+      {}, 
       { $set: updateData },
-      { upsert: true } // যদি কোনো ডাটা না থাকে তবে নতুন তৈরি করবে
+      { upsert: true } 
     );
 
     res.send({

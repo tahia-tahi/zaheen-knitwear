@@ -7,7 +7,7 @@ const Hero = () => {
   const [hero, setHero] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // Default content (Design never breaks)
+  // Default content 
   const defaultHero = {
     title: "High-Quality Garments.\nEthically Made",
     subtitle: "Elevate Your Brand With",
