@@ -56,7 +56,7 @@ const Navbar = () => {
               {/* User Profile */}
               <div className="flex items-center gap-2 cursor-pointer group">
                 <img onClick={()=> navigate('/admin-dashboard/manage-products')}
-                  src={user?.photoURL || "https://i.ibb.co/mJR9Qnp/user-placeholder.png"}
+                  src={user?.photoURL || "https://icons8.com/icon/84020/user"}
                   alt="profile"
                   className="w-8 h-8 rounded-full border border-gray-200 object-cover"
                 />
