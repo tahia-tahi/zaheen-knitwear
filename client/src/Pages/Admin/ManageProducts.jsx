@@ -7,7 +7,7 @@ const ManageProducts = () => {
 
     // Product Load
     const fetchProducts = () => {
-        axios.get(`${import.meta.envVITE_API_URL}/products`)
+        axios.get(`${import.meta.envVITE_API_URL}/api/products`)
             .then(res => setProducts(res.data))
             .catch(err => console.error(err));
     };
@@ -27,7 +27,7 @@ const ManageProducts = () => {
 
         const newProduct = { name, price: parseFloat(price), image, category };
 
-        axios.post(`${import.meta.envVITE_API_URL}/products`, newProduct)
+        axios.post(`${import.meta.envVITE_API_URL}/api/products`, newProduct)
             .then(res => {
                 if (res.data.success) {
                     alert('Product Added Successfully!');
@@ -41,7 +41,7 @@ const ManageProducts = () => {
     // Delete Product
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
-            axios.delete(`${import.meta.env.VITE_API_URL}/products/${id}`)
+            axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`)
                 .then(res => {
                     if (res.data.success || res.data.deletedCount > 0) {
                         fetchProducts();

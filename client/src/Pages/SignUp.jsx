@@ -29,7 +29,7 @@ const SignUp = () => {
             role: "user",
           };
 
-          axios.post(`${import.meta.env.VITE_API_URL}/users`, userInfo).then((res) => {
+          axios.post(`${import.meta.env.VITE_API_URL}/api/users`, userInfo).then((res) => {
             if (res.data.insertedId || res.data.message === "User already exists") {
               navigate("/");
             }
@@ -40,7 +40,6 @@ const SignUp = () => {
   };
 
   return (
-    // Background using 'light' and 'secondary' variables
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-light via-white to-secondary/20 p-4">
       <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md border border-secondary/10">
         

@@ -16,7 +16,7 @@ const Hero = () => {
   };
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/hero`)
+    fetch(`${import.meta.env.VITE_API_URL}/api/hero`)
       .then((res) => res.json())
       .then((data) => {
         setHero(data || {});
