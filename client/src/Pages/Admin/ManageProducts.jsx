@@ -7,7 +7,7 @@ const ManageProducts = () => {
 
     // Product Load
     const fetchProducts = () => {
-        axios.get(`${import.meta.envVITE_API_URL}/api/products`)
+        axios.get(`${import.meta.env.VITE_API_URL}/api/products`)
             .then(res => setProducts(res.data))
             .catch(err => console.error(err));
     };
@@ -27,7 +27,7 @@ const ManageProducts = () => {
 
         const newProduct = { name, price: parseFloat(price), image, category };
 
-        axios.post(`${import.meta.envVITE_API_URL}/api/products`, newProduct)
+        axios.post(`${import.meta.env.VITE_API_URL}/api/products`, newProduct)
             .then(res => {
                 if (res.data.success) {
                     alert('Product Added Successfully!');
