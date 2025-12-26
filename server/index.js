@@ -11,7 +11,7 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['zaheen-knitwear.vercel.app'], 
+  origin: ["https://zaheen-knitwear.vercel.app"], 
   credentials: true
 }));
 app.use(express.json());
