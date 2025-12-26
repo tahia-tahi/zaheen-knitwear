@@ -11,7 +11,7 @@ const UpdateHero = () => {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/api/hero')
+        axios.get(`${import.meta.env.VITE_API_URL}/hero`)
             .then(res => {
                 if (res.data) {
                     setHeroData(res.data);
@@ -29,7 +29,7 @@ const UpdateHero = () => {
         e.preventDefault();
         setLoading(true);
 
-        axios.put('http://localhost:3000/api/hero', heroData)
+        axios.put(`${import.meta.env.VITE_API_URL}/hero`, heroData)
             .then(res => {
                 if (res.data.success) {
                     alert('Hero section updated successfully!');

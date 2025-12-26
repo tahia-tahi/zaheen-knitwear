@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
         
         if (currentUser) {
             const userInfo = { email: currentUser.email };
-            axios.post('http://localhost:3000/jwt', userInfo, { withCredentials: true })
+            axios.post(`${import.meta.env.VITE_API_URL}/jwt`, userInfo, { withCredentials: true })
                 .then(res => {
                     console.log('Token Success');
                     setLoading(false); 

@@ -29,7 +29,7 @@ const SignUp = () => {
             role: "user",
           };
 
-          axios.post("http://localhost:3000/api/users", userInfo).then((res) => {
+          axios.post(`${import.meta.env.VITE_API_URL}/users`, userInfo).then((res) => {
             if (res.data.insertedId || res.data.message === "User already exists") {
               navigate("/");
             }

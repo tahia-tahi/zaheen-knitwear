@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../Provider/AuthContext";
 import { useNavigate } from "react-router";
-import axios from 'axios';
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
 
 const LogIn = () => {

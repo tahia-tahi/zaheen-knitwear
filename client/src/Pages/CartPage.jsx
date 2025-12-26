@@ -34,7 +34,6 @@ const CartPage = () => {
             </div>
 
             {cart.length === 0 ? (
-                // ... (আপনার আগের এম্পটি কার্ট সেকশনটি এখানে থাকবে)
                 <div className="text-center py-24 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
                     <div className="flex justify-center mb-6">
                         <ShoppingBasket size={80} className="text-gray-200" />
