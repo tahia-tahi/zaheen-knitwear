@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCart } from '../Provider/CartProvider';
-import { Trash2, ShoppingBasket, ArrowLeft, ImageOff } from 'lucide-react';
+import { Trash2, ShoppingBasket, ArrowLeft, ImageOff, Home } from 'lucide-react'; // Home আইকন যোগ করা হয়েছে
 import { useNavigate } from 'react-router';
 
 const CartPage = () => {
@@ -15,6 +15,16 @@ const CartPage = () => {
 
     return (
         <div className="p-4 md:p-10 max-w-6xl mx-auto min-h-screen bg-white">
+            <div className="mb-6">
+                <button 
+                    onClick={() => navigate('/')}
+                    className="flex items-center gap-2 text-base font-bold hover:text-primary transition-colors group"
+                >
+                    <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+                    <span>Back to Home</span>
+                </button>
+            </div>
+
             <div className="flex items-center justify-between mb-10 border-b pb-5">
                 <div className="flex items-center gap-3">
                     <ShoppingBasket className="text-primary" size={32} />
@@ -24,6 +34,7 @@ const CartPage = () => {
             </div>
 
             {cart.length === 0 ? (
+                // ... (আপনার আগের এম্পটি কার্ট সেকশনটি এখানে থাকবে)
                 <div className="text-center py-24 bg-gray-50 rounded-3xl border-2 border-dashed border-gray-200">
                     <div className="flex justify-center mb-6">
                         <ShoppingBasket size={80} className="text-gray-200" />
@@ -39,12 +50,12 @@ const CartPage = () => {
                 </div>
             ) : (
                 <div className="flex flex-col lg:flex-row gap-10">
-                 
+                    {/* Products List */}
                     <div className="lg:w-2/3 space-y-6">
                         {cart.map((item) => (
                             <div key={item._id} className="flex flex-col sm:flex-row items-center gap-6 p-5 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                             
-                                <div className="w-full sm:w-32 h-32 flex-shrink-0">
+                                {/* Product Image */}
+                                <div className="w-full sm:w-32 h-32 shrink-0">
                                     {item.image ? (
                                         <img
                                             src={item.image}
@@ -79,6 +90,7 @@ const CartPage = () => {
                         ))}
                     </div>
 
+                    {/* Order Summary */}
                     <div className="lg:w-1/3">
                         <div className="bg-gray-50 p-8 rounded-3xl sticky top-28 border border-gray-100">
                             <h3 className="text-2xl font-bold mb-6 text-gray-800">Order Summary</h3>
@@ -89,7 +101,7 @@ const CartPage = () => {
                                 </div>
                                 <div className="flex justify-between text-gray-600 border-b pb-4">
                                     <span>Shipping Cost</span>
-                                    <span className="text-green-600 font-bold  uppercase text-sm">Free</span>
+                                    <span className="text-green-600 font-bold uppercase text-sm">Free</span>
                                 </div>
                                 <div className="flex justify-between items-center pt-2">
                                     <span className="text-lg font-bold">Total Payable</span>

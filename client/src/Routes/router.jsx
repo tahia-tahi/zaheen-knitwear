@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router";
-import RootLayout from "../Layout/Rootlayout";
+import RootLayout from "../Layout/RootLayout";
 import Home from "../Pages/Home";
 import AuthLayout from "../Layout/AuthLayout";
 import LogIn from "../Pages/LogIn";
@@ -9,6 +9,7 @@ import UpdateHero from "../Pages/Admin/UpdateHero";
 import ManageProducts from "../Pages/Admin/ManageProducts";
 import CartPage from "../Pages/CartPage";
 import CheckoutPage from "../Pages/CheckoutPage";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 export const router = createBrowserRouter([
 
@@ -36,7 +37,9 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/admin-dashboard',
-                Component: AdminDashboard,
+                element: <PrivateRoute>
+                    <AdminDashboard></AdminDashboard>
+                </PrivateRoute>,
                 children: [
                     {
                         path: 'update-hero',
@@ -49,12 +52,17 @@ export const router = createBrowserRouter([
                 ]
             },
             {
-                path:'/cart',
-                element:<CartPage></CartPage>
+                path: '/cart',
+                element: <PrivateRoute>
+                    <CartPage></CartPage>
+                </PrivateRoute>
+
             },
             {
-                path:'/checkout',
-                element:<CheckoutPage></CheckoutPage>
+                path: '/checkout',
+                element: <PrivateRoute>
+                    <CheckoutPage></CheckoutPage>
+                    </PrivateRoute>
             }
 
         ]

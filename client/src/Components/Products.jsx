@@ -1,13 +1,17 @@
 import { ShoppingBasket } from 'lucide-react';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react'; 
 import { typography } from '../style/typoghraphy';
 import Loading from './Loading';
 import { useCart } from '../Provider/CartProvider';
-
+import { useNavigate, useLocation } from 'react-router';
+import { AuthContext } from '../Provider/AuthContext';
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {addToCart} = useCart()
+  const { addToCart } = useCart();
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Fetch products from backend
   useEffect(() => {
@@ -22,6 +26,19 @@ const Products = () => {
         setLoading(false);
       });
   }, []);
+
+  const handleAction = (action, product) => {
+    if (user) {
+      if (action === 'addToCart') {
+        addToCart(product);
+      } else if (action === 'buyNow') {
+        addToCart(product);
+        navigate('/checkout');
+      }
+    } else {
+      navigate('/auth/log-in', { state: { from: location } });
+    }
+  };
 
   if (loading) {
     return (
@@ -47,13 +64,21 @@ const Products = () => {
               <h3 className="text-lg font-semibold">{product.name}</h3>
               <p className="text-gray-700 mt-1">${product.price}</p>
 
-              {/* Buttons */}
+              {/* Buttons with Logic */}
               <div className="flex justify-between items-center gap-2 mt-4">
-                <button onClick={()=>addToCart(product)} className={`${typography.button4} flex items-center gap-2`}>
-                  <ShoppingBasket />
+                <button
+                  onClick={() => handleAction('addToCart', product)}
+                  className={`${typography.button4} flex items-center w-full justify-center`}
+                >
+                  <ShoppingBasket size={18} />
                   Add to Cart
                 </button>
-                <button className={`${typography.button5}`}>Buy Now</button>
+                <button
+                  onClick={() => handleAction('buyNow', product)}
+                  className={`${typography.button5} w-full`}
+                >
+                  Buy Now
+                </button>
               </div>
             </div>
           </div>
