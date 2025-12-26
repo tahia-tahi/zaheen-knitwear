@@ -5,7 +5,9 @@ import {
   MailIcon,
   SendIcon,
   TwitchIcon,
+  CheckIcon, 
 } from "lucide-react";
+import React, { useState } from "react"; 
 import img1 from "../assets/bkash.png";
 import img2 from "../assets/cellfin.png";
 import img3 from "../assets/mastercard.png";
@@ -17,7 +19,24 @@ import img8 from "../assets/taptap.png";
 import img9 from "../assets/upai.png";
 
 const Footer = () => {
+  const [copied, setCopied] = useState(false);
+  const email = "info@zaheen.com";
+  const address = "29 SE 2nd Ave, Miami Florida 33131, United States";
+
   const payments = [img1, img2, img3, img4, img5, img6, img7, img8, img9];
+
+  // Email Copy Function
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000); 
+  };
+
+  // Google Map Open Function
+  const openGoogleMap = () => {
+    const mapUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    window.open(mapUrl, "_blank");
+  };
 
   return (
     <footer className="bg-gray-50 border-t">
@@ -28,15 +47,27 @@ const Footer = () => {
         <div className="space-y-4">
           <h1 className="text-2xl font-bold text-primary">Zaheen</h1>
 
-          <div className="flex items-start gap-3 text-gray-600 text-sm">
-            <SendIcon size={18} />
-            <p>29 SE 2nd Ave, Miami Florida 33131, United States</p>
+          {/* Map */}
+          <div 
+            onClick={openGoogleMap}
+            className="flex items-start gap-3 text-gray-600 text-sm cursor-pointer hover:text-primary transition-colors group"
+          >
+            <SendIcon size={18} className="group-hover:text-primary" />
+            <p>{address}</p>
           </div>
 
+          {/* Email Copy*/}
           <div className="flex items-center gap-3 text-gray-600 text-sm">
             <MailIcon size={18} />
-            <p>info@zaheen.com</p>
-            <CopyIcon size={16} className="cursor-pointer opacity-70 hover:opacity-100" />
+            <p>{email}</p>
+            <div onClick={handleCopyEmail} className="cursor-pointer transition-all">
+              {copied ? (
+                <CheckIcon size={16} className="text-green-600" />
+              ) : (
+                <CopyIcon size={16} className="opacity-70 hover:opacity-100 hover:text-primary" />
+              )}
+            </div>
+            {copied && <span className="text-[10px] text-green-600 font-bold animate-pulse">Copied!</span>}
           </div>
 
           <p className="text-gray-600 text-sm">(+92) 3942 7879</p>
@@ -46,16 +77,16 @@ const Footer = () => {
         <div className="flex gap-16">
           <ul className="space-y-3 text-sm">
             <h3 className="font-semibold text-gray-900 mb-2">Important Links</h3>
-            <li className="hover:text-primary cursor-pointer">About</li>
-            <li className="hover:text-primary cursor-pointer">Service</li>
-            <li className="hover:text-primary cursor-pointer">Blog</li>
+            <li className="hover:text-primary cursor-pointer transition-colors">About</li>
+            <li className="hover:text-primary cursor-pointer transition-colors">Service</li>
+            <li className="hover:text-primary cursor-pointer transition-colors">Blog</li>
           </ul>
 
           <ul className="space-y-3 text-sm">
             <h3 className="font-semibold text-gray-900 mb-2">Information</h3>
-            <li className="hover:text-primary cursor-pointer">My Account</li>
-            <li className="hover:text-primary cursor-pointer">Corporate Enquiries</li>
-            <li className="hover:text-primary cursor-pointer">FAQs</li>
+            <li className="hover:text-primary cursor-pointer transition-colors">My Account</li>
+            <li className="hover:text-primary cursor-pointer transition-colors">Corporate Enquiries</li>
+            <li className="hover:text-primary cursor-pointer transition-colors">FAQs</li>
           </ul>
         </div>
 
@@ -89,15 +120,15 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-5">
-            <FacebookIcon className="cursor-pointer hover:text-primary" size={18} />
-            <TwitchIcon className="cursor-pointer hover:text-primary" size={18} />
-            <InstagramIcon className="cursor-pointer hover:text-primary" size={18} />
+            <FacebookIcon className="cursor-pointer hover:text-primary transition-colors" size={18} />
+            <TwitchIcon className="cursor-pointer hover:text-primary transition-colors" size={18} />
+            <InstagramIcon className="cursor-pointer hover:text-primary transition-colors" size={18} />
           </div>
 
           <div className="flex gap-4">
-            <span className="cursor-pointer hover:text-primary">Terms</span>
-            <span className="cursor-pointer hover:text-primary">Refund</span>
-            <span className="cursor-pointer hover:text-primary">Privacy</span>
+            <span className="cursor-pointer hover:text-primary transition-colors">Terms</span>
+            <span className="cursor-pointer hover:text-primary transition-colors">Refund</span>
+            <span className="cursor-pointer hover:text-primary transition-colors">Privacy</span>
           </div>
         </div>
       </div>
