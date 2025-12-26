@@ -22,30 +22,29 @@ const AuthProvider = ({ children }) => {
     const updateUser = (updatedData) => {
         return updateProfile(auth.currentUser, updatedData)
     }
+
+
     useEffect(() => {
-
-        const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser)
-            setLoading(false)
-            if (currentUser?.email) {
-                const userData = { email: currentUser.email }
-                axios.post('http://localhost:3000/jwt', userData, {
-                    withCredentials: true
+    const unSubscribe = onAuthStateChanged(auth, currentUser => {
+        setUser(currentUser);
+        
+        if (currentUser) {
+            const userInfo = { email: currentUser.email };
+            axios.post('http://localhost:3000/jwt', userInfo, { withCredentials: true })
+                .then(res => {
+                    console.log('Token Success');
+                    setLoading(false); 
                 })
-                    .then(res => {
-                        console.log('token after jwt', res.data);
-                    })
-                    .catch(error => console.log(error))
-            }
-
-            console.log('user in the auth state change', currentUser);
-        })
-
-        return () => {
-            unSubscribe()
+                .catch(err => {
+                    console.error("JWT Error", err);
+                    setLoading(false); 
+                });
+        } else {
+            setLoading(false);
         }
-
-    }, [])
+    });
+    return () => unSubscribe();
+}, []);
 
     const logOut = () => {
         return signOut(auth)
@@ -66,9 +65,9 @@ const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext value={userInfo}>
+        <AuthContext.Provider value={userInfo}>
             {children}
-        </AuthContext>
+        </AuthContext.Provider>
     );
 };
 

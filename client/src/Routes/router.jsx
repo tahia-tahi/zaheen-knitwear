@@ -4,6 +4,9 @@ import Home from "../Pages/Home";
 import AuthLayout from "../Layout/AuthLayout";
 import LogIn from "../Pages/LogIn";
 import SignUp from "../Pages/SignUp";
+import AdminDashboard from "../Pages/Admin/AdminDashboard";
+import UpdateHero from "../Pages/Admin/UpdateHero";
+import ManageProducts from "../Pages/Admin/ManageProducts";
 
 export const router = createBrowserRouter([
 
@@ -16,16 +19,30 @@ export const router = createBrowserRouter([
                 Component: Home
             },
             {
-                path : '/auth',
-                Component :AuthLayout,
-                children : [
+                path: '/auth',
+                Component: AuthLayout,
+                children: [
                     {
                         path: 'log-in',
-                        Component :LogIn
+                        Component: LogIn
                     },
                     {
-                        path : 'sign-up',
-                        Component : SignUp
+                        path: 'sign-up',
+                        Component: SignUp
+                    }
+                ]
+            },
+            {
+                path: '/admin-dashboard',
+                Component: AdminDashboard,
+                children: [
+                    {
+                        path: 'update-hero',
+                        Component: UpdateHero
+                    },
+                    {
+                        path: 'manage-products',
+                        Component: ManageProducts
                     }
                 ]
             }
