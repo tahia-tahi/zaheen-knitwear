@@ -21,7 +21,6 @@ const ProcessBanner = () => {
             Learn More
           </button>
         </div>
-
         <div className="w-full md:w-1/2 flex justify-center">
           <img
             src={dress}
@@ -29,11 +28,8 @@ const ProcessBanner = () => {
             className="max-w-full h-auto"
           />
         </div>
-
       </div>
     </div>
   );
 };
-
-
 export default ProcessBanner;

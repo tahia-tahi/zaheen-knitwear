@@ -39,7 +39,6 @@ const Products = () => {
       navigate('/auth/log-in', { state: { from: location } });
     }
   };
-
   if (loading) {
     return (
       <div className="py-20 flex justify-center">

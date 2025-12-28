@@ -42,7 +42,7 @@ const SignUp = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-linear-to-br from-light via-white to-secondary/20 p-4">
       <div className="bg-white p-10 rounded-[2.5rem] shadow-2xl w-full max-w-md border border-secondary/10">
-        
+
         <div className="text-center mb-10">
           <h2 className="text-4xl font-black text-gray-800 mb-2">Create Account</h2>
           <p className="text-base text-sm">Join Zaheen and start shopping today!</p>

@@ -25,9 +25,7 @@ const ManageProducts = () => {
         const price = form.price.value;
         const image = form.image.value;
         const category = form.category.value;
-
         const newProduct = { name, price: parseFloat(price), image, category };
-
         axios.post(`${import.meta.env.VITE_API_URL}/api/products`, newProduct)
             .then(res => {
                 if (res.data.success) {

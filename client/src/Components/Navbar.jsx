@@ -78,13 +78,11 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu */}
         <button className="md:hidden" onClick={() => setOpen(!open)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
-
-      {/* Mobile Menu */}
       {open && (
         <div className="md:hidden bg-white border-t">
           <ul className={typography.headerMenu}>

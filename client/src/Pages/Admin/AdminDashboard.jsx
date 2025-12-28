@@ -52,8 +52,6 @@ const AdminDashboard = () => {
                             ))}
                         </div>
                     </div>
-
-                    {/* Bottom Section */}
                     <div className="mt-auto p-6 space-y-3">
                         <div className="bg-gray-50 rounded-2xl p-4 flex items-center gap-3 mb-4">
                             <div className="w-10 h-10 rounded-full bg-gray-200 overflow-hidden border-2 border-white shadow-sm">
@@ -66,7 +64,6 @@ const AdminDashboard = () => {
                         </div>
                     </div>
                 </aside>
-
                 {/* Content Area */}
                 <div className="flex-1 flex flex-col overflow-hidden">
                     <main className="flex-1 overflow-x-hidden overflow-y-auto bg-[#F8F9FC] p-8">

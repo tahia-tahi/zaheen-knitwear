@@ -7,10 +7,9 @@ const CheckoutPage = () => {
     const { cart, clearCart } = useCart();
     const navigate = useNavigate();
     const [orderSuccess, setOrderSuccess] = useState(false);
-
     const totalPrice = cart.reduce((sum, item) => sum + (Number(item.price) * (item.quantity || 1)), 0);
 
-    const handleConfirmOrder = (e) => {
+    const handleConfirm = (e) => {
         e.preventDefault();
         setOrderSuccess(true);
         setTimeout(() => {
@@ -62,7 +61,7 @@ const CheckoutPage = () => {
                 {/* Form */}
                 <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-gray-200/50">
                     <h3 className="text-xl font-bold mb-8 text-gray-800 border-l-4 border-secondary pl-4">Shipping Information</h3>
-                    <form onSubmit={handleConfirmOrder} className="space-y-5">
+                    <form onSubmit={handleConfirm} className="space-y-5">
                         <div className="relative group">
                             <User className="absolute left-4 top-4 text-gray-400 group-focus-within:text-secondary transition-colors" size={18} />
                             <input type="text" placeholder="Full Name" required className="w-full pl-12 pr-4 py-4 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:ring-2 focus:ring-secondary/20 focus:border-secondary transition-all" />

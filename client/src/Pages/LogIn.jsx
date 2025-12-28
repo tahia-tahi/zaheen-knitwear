@@ -103,7 +103,7 @@ const LogIn = () => {
 
                 {/* Footer Link */}
                 <p className="text-center mt-8 text-sm text-base">
-                    New to Zaheen?{" "}
+                    New to Our Shop?{" "}
                     <button onClick={() => navigate("/auth/sign-up")} className="text-secondary font-bold hover:underline">
                         Create Account
                     </button>
