@@ -43,7 +43,7 @@ Follow these steps to set up the project locally:
 git clone [https://github.com/your-username/zaheen-knitwear.git](https://github.com/your-username/zaheen-knitwear.git)
 ```
 ### 2. Frontend Setup
-* **cd client
+* cd client
 * **npm install
 * **npm run dev
 
