@@ -71,3 +71,4 @@ POST   /api/products      Add a new product
 DELETE /api/products/:id  Remove a product by ID
 GET    /api/hero          Retrieve Hero section content
 PUT    /api/hero          Update Hero section content
+POST   /api/users         add a user
