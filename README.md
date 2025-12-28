@@ -40,7 +40,7 @@ Zaheen Knitwear is a modern **Full-Stack Web Application** designed for clothing
 Follow these steps to set up the project locally:
 ### 1. Clone the repository
 ```
-git clone [https://github.com/your-username/zaheen-knitwear.git](https://github.com/your-username/zaheen-knitwear.git)
+git clone [https://github.com/tahia-tahi/zaheen-knitwear.git](https://github.com/tahia-tahi/zaheen-knitwear.git)
 ```
 ### 2. Frontend Setup
 * cd client
