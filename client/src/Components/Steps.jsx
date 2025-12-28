@@ -26,23 +26,14 @@ const Steps = () => {
                 const Icon = step.icon;
                 return (
                     <div key={step.serial} className="p-6  rounded-xl flex flex-col shadow items-center bg-white text-center relative">
-                        {/* Serial Circle */}
                         <div className="flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg text-black font-bold mb-4 absolute -top-6">
                             {step.serial}
                         </div>
-
-                        <div className='text-left'>
-                            {/* Icon */}
+                        <div className='text-left'>  
                             <Icon className="text-primary mb-4" size={32} />
-
-                            {/* Title */}
                             <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
-
-                            {/* Description */}
                             <p className="text-sm text-gray-700">{step.description}</p>
                         </div>
-
-
                     </div>
                 );
             })}

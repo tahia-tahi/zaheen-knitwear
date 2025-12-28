@@ -1,8 +1,8 @@
 const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const express = require('express');
 const cors = require('cors');
-const jwt = require('jsonwebtoken'); 
-const cookieParser = require('cookie-parser'); 
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -11,11 +11,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ["https://zaheen-knitwear.vercel.app"], 
+  origin: ["https://zaheen-knitwear.vercel.app"],
   credentials: true
 }));
 app.use(express.json());
-app.use(cookieParser()); 
+app.use(cookieParser());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.ajyk6la.mongodb.net/?appName=Cluster0`;
 
@@ -41,7 +41,7 @@ async function run() {
       res
         .cookie('token', token, {
           httpOnly: true,
-          secure: false, 
+          secure: false,
           sameSite: 'none'
         })
         .send({ success: true });
@@ -50,8 +50,8 @@ async function run() {
     app.post('/logout', async (req, res) => {
       res.clearCookie('token', { maxAge: 0 }).send({ success: true });
     });
-    // ----------------
 
+    // users
     app.post('/api/users', async (req, res) => {
       const user = req.body;
       const query = { email: user.email };
@@ -77,34 +77,34 @@ async function run() {
       res.send({ admin: isAdmin });
     });
 
+    // hero content
     app.get('/api/hero', async (req, res) => {
       const heroData = await heroCollection.findOne({});
       res.json(heroData);
     });
 
-  app.put("/api/hero", async (req, res) => {
-  try {
-    const updatedHero = req.body;
-    
-    const { _id, ...updateData } = updatedHero;
+    app.put("/api/hero", async (req, res) => {
+      try {
+        const updatedHero = req.body;
+        const { _id, ...updateData } = updatedHero;
+        const result = await heroCollection.updateOne(
+          {},
+          { $set: updateData },
+          { upsert: true }
+        );
 
-    const result = await heroCollection.updateOne(
-      {}, 
-      { $set: updateData },
-      { upsert: true } 
-    );
-
-    res.send({
-      success: true,
-      message: "Hero updated successfully",
-      result,
+        res.send({
+          success: true,
+          message: "Hero updated successfully",
+          result,
+        });
+      } catch (error) {
+        console.error("Hero Update Error:", error);
+        res.status(500).send({ success: false, message: error.message });
+      }
     });
-  } catch (error) {
-    console.error("Hero Update Error:", error);
-    res.status(500).send({ success: false, message: error.message });
-  }
-});
 
+    //products 
     app.get('/api/products', async (req, res) => {
       const result = await productCollection.find().toArray();
       res.send(result);
@@ -128,4 +128,4 @@ async function run() {
 run().catch(console.dir);
 
 app.get('/', (req, res) => { res.send('Server is running'); });
-app.listen(port, () => { console.log(`Listening on port ${port}`)});
+app.listen(port, () => { console.log(`Listening on port ${port}`) });

@@ -23,14 +23,14 @@ const AuthProvider = ({ children }) => {
         return updateProfile(auth.currentUser, updatedData)
     }
 
-
     useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, currentUser => {
         setUser(currentUser);
         
         if (currentUser) {
             const userInfo = { email: currentUser.email };
-            axios.post(`${import.meta.env.VITE_API_URL}/jwt`, userInfo, { withCredentials: true })
+            axios.post(`${import.meta.env.VITE_API_URL}/jwt`, 
+                userInfo, { withCredentials: true })
                 .then(res => {
                     console.log('Token Success');
                     setLoading(false); 

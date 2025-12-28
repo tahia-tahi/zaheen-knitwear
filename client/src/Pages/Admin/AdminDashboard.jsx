@@ -13,16 +13,11 @@ import Footer from '../../Components/Footer';
 
 const AdminDashboard = () => {
     const location = useLocation();
-
-
-
     const menuItems = [
         { name: 'Manage Products', path: '/admin-dashboard/manage-products', icon: <ShoppingBag size={20} /> },
         { name: 'Update Hero', path: '/admin-dashboard/update-hero', icon: <PlusCircle size={20} /> },
     ];
-
     const isActive = (path) => location.pathname === path;
-
     return (
         <div>
             <Navbar />

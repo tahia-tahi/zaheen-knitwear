@@ -11,6 +11,9 @@ export const typography = {
   button5: "bg-secondary hover:bg-[#00908D] px-[15px] py-[10px] text-white rounded-lg border border-secondary  hover:border-white transition ",
   emailDiv1 : "h-[270] w-[270] bg-primary px-[38px] py-[65px] text-white",
   emailDiv2 : "h-[270] w-[270] bg-secondary px-[30px] py-[40px] text-white",
-  processBadge : "px-3 py-2 text-secondary border-3 border-secondary w-[92px] h-[35px] rounded-3xl"
-
+  processBadge : "px-3 py-2 text-secondary border-3 border-secondary w-[92px] h-[35px] rounded-3xl",
+footerLinks:"cursor-pointer hover:text-primary transition-colors",
+footerLinks2:"font-semibold text-gray-900 mb-4",
+loading:"w-1 h-4 bg-orange-500 animate-[pulse_2s_ease-in-out_infinite] delay-400",
+productManage:"p-5 text-xs font-bold text-gray-400 uppercase",
 };

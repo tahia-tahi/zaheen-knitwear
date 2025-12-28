@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Trash2, Plus, Package, DollarSign, Tag, Image as ImageIcon } from 'lucide-react';
+import { typography } from '../../style/typoghraphy';
 
 const ManageProducts = () => {
     const [products, setProducts] = useState([]);
 
-    // Product Load
+    // Product fetch
     const fetchProducts = () => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/products`)
             .then(res => setProducts(res.data))
@@ -16,7 +17,7 @@ const ManageProducts = () => {
         fetchProducts();
     }, []);
 
-    // Add Product
+    // Add 
     const handleAddProduct = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -38,7 +39,7 @@ const ManageProducts = () => {
             .catch(err => console.error(err));
     };
 
-    // Delete Product
+    // Delete 
     const handleDelete = (id) => {
         if (window.confirm('Are you sure you want to delete this product?')) {
             axios.delete(`${import.meta.env.VITE_API_URL}/api/products/${id}`)
@@ -53,7 +54,6 @@ const ManageProducts = () => {
 
     return (
         <div className="space-y-8 animate-in fade-in duration-500">
-            {/* Page Header */}
             <div className="flex items-center justify-between">
                 <div>
                     <h2 className="text-2xl font-black text-gray-800">Inventory Management</h2>
@@ -64,7 +64,7 @@ const ManageProducts = () => {
                 </div>
             </div>
 
-            {/* Product Add Form Card */}
+            {/* Product Adding Form */}
             <div className="bg-white p-8 rounded-3xl border border-gray-100 shadow-sm">
                 <div className="flex items-center gap-2 mb-6">
                     <Plus className="text-primary" size={20} />
@@ -110,16 +110,16 @@ const ManageProducts = () => {
                 </form>
             </div>
 
-            {/* Products Table Card */}
+            {/* Products Table */}
             <div className="bg-white rounded-3xl border border-gray-100 shadow-sm overflow-hidden">
                 <div className="overflow-x-auto">
                     <table className="w-full text-left">
                         <thead>
                             <tr className="bg-gray-50/50 border-b border-gray-100">
-                                <th className="p-5 text-xs font-bold text-gray-400 uppercase">Product</th>
-                                <th className="p-5 text-xs font-bold text-gray-400 uppercase">Category</th>
-                                <th className="p-5 text-xs font-bold text-gray-400 uppercase">Price</th>
-                                <th className="p-5 text-xs font-bold text-gray-400 uppercase text-right">Actions</th>
+                                <th className={typography.productManage}>Product</th>
+                                <th className={typography.productManage}>Category</th>
+                                <th className={typography.productManage}>Price</th>
+                                <th className={`${typography.productManage} uppercase text-right`}>Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-50">

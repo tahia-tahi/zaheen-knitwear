@@ -110,7 +110,6 @@ const SignUp = () => {
           </button>
         </form>
 
-        {/* Divider */}
         <div className="relative my-8 text-center">
           <div className="absolute inset-0 flex items-center">
             <div className="w-full border-t border-gray-100"></div>
@@ -118,7 +117,6 @@ const SignUp = () => {
           <span className="relative px-4 bg-white text-xs font-bold text-base uppercase tracking-widest">Or Continue With</span>
         </div>
 
-        {/* Google Login using Primary color for Icon */}
         <button
           onClick={() => googleSignIn().then(() => navigate("/"))}
           className="w-full flex items-center justify-center gap-3 border-2 border-gray-100 rounded-2xl py-3.5 font-bold text-gray-700 hover:bg-gray-50 hover:border-secondary/30 transition-all duration-200"

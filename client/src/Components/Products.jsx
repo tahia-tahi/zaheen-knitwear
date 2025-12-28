@@ -13,7 +13,7 @@ const Products = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Fetch products from backend
+  // Fetch products
   useEffect(() => {
     fetch(`${import.meta.env.VITE_API_URL}/api/products`)
       .then(res => res.json())
@@ -63,8 +63,6 @@ const Products = () => {
             <div className="p-4">
               <h3 className="text-lg font-semibold">{product.name}</h3>
               <p className="text-gray-700 mt-1">${product.price}</p>
-
-              {/* Buttons with Logic */}
               <div className="flex justify-between items-center gap-2 mt-4">
                 <button
                   onClick={() => handleAction('addToCart', product)}

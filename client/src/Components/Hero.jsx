@@ -4,7 +4,7 @@ import heroBg from "../assets/bg-video.png";
 import Loading from "./Loading";
 
 const Hero = () => {
-  const [hero, setHero] = useState(null);
+  const [heroContent, setHeroContent] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // Default content 
@@ -19,7 +19,7 @@ const Hero = () => {
     fetch(`${import.meta.env.VITE_API_URL}/api/hero`)
       .then((res) => res.json())
       .then((data) => {
-        setHero(data || {});
+        setHeroContent(data || {});
         setLoading(false);
       })
       .catch((err) => {
@@ -36,16 +36,16 @@ const Hero = () => {
     );
   }
 
-  const finalHero = { ...defaultHero, ...hero };
+  const finalHeroContent = { ...defaultHero, ...heroContent };
 
   return (
  <section className="relative min-h-screen w-full overflow-hidden">
 
   {/* Background */}
-  {finalHero.backgroundVideo ? (
+  {finalHeroContent.backgroundVideo ? (
     <video
       className="absolute inset-0 w-full h-full object-cover"
-      src={finalHero.backgroundVideo}
+      src={finalHeroContent.backgroundVideo}
       autoPlay
       loop
       muted
@@ -55,7 +55,7 @@ const Hero = () => {
     <div
       className="absolute inset-0 bg-cover bg-center"
       style={{
-        backgroundImage: `url(${finalHero.backgroundImage})`,
+        backgroundImage: `url(${finalHeroContent.backgroundImage})`,
       }}
     />
   )}
@@ -68,11 +68,11 @@ const Hero = () => {
     <div className="max-w-2xl space-y-6">
 
       <p className={typography.pText}>
-        {finalHero.subtitle}
+        {finalHeroContent.subtitle}
       </p>
 
       <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight whitespace-pre-line">
-        {finalHero.title}
+        {finalHeroContent.title}
       </h1>
 
       <p className="text-sm md:text-base text-gray-200">

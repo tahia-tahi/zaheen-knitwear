@@ -38,8 +38,6 @@ const CheckoutPage = () => {
 
     return (
         <div className="p-4 md:p-10 max-w-6xl mx-auto min-h-screen">
-            
-            {/* Navigation Buttons */}
             <div className="flex items-center justify-between mb-8">
                 <button 
                     onClick={() => navigate('/')}
@@ -48,7 +46,6 @@ const CheckoutPage = () => {
                     <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
                     Back to Shop
                 </button>
-
                 <button 
                     onClick={() => navigate('/cart')}
                     className="flex items-center gap-2 text-sm font-bold text-secondary hover:underline"
@@ -57,13 +54,12 @@ const CheckoutPage = () => {
                     Review Cart
                 </button>
             </div>
-
             <h2 className="text-4xl font-black mb-10 flex items-center gap-3 text-gray-800">
                 <Truck className="text-primary" size={36} /> Checkout
             </h2>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Shipping Form */}
+                {/* Form */}
                 <div className="bg-white p-8 rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-gray-200/50">
                     <h3 className="text-xl font-bold mb-8 text-gray-800 border-l-4 border-secondary pl-4">Shipping Information</h3>
                     <form onSubmit={handleConfirmOrder} className="space-y-5">

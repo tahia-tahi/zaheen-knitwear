@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCart } from '../Provider/CartProvider';
-import { Trash2, ShoppingBasket, ArrowLeft, ImageOff, Home } from 'lucide-react'; // Home আইকন যোগ করা হয়েছে
+import { Trash2, ShoppingBasket, ArrowLeft, ImageOff, } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 const CartPage = () => {
@@ -9,8 +9,8 @@ const CartPage = () => {
 
     const totalPrice = cart.reduce((sum, item) => {
         const itemPrice = parseFloat(item.price) || 0; 
-        const itemQty = parseInt(item.quantity) || 1;  
-        return sum + (itemPrice * itemQty);
+        const itemQuantity = parseInt(item.quantity) || 1;  
+        return sum + (itemPrice * itemQuantity);
     }, 0);
 
     return (
@@ -49,11 +49,9 @@ const CartPage = () => {
                 </div>
             ) : (
                 <div className="flex flex-col lg:flex-row gap-10">
-                    {/* Products List */}
                     <div className="lg:w-2/3 space-y-6">
                         {cart.map((item) => (
                             <div key={item._id} className="flex flex-col sm:flex-row items-center gap-6 p-5 bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-md transition-all">
-                                {/* Product Image */}
                                 <div className="w-full sm:w-32 h-32 shrink-0">
                                     {item.image ? (
                                         <img

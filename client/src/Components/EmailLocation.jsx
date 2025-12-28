@@ -21,7 +21,6 @@ const EmailLocation = () => {
       {/* Cards */}
       <div className="absolute right-8 -top-24 hidden md:flex shadow-xl rounded-lg overflow-hidden">
         
-        {/* Orange Card */}
         <div className="bg-primary text-white p-6 w-64">
           <h3 className="font-semibold text-lg mb-2">
             Quality Product

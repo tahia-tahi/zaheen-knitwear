@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Layout, Type, AlignLeft, ImageIcon, Save, Loader2,} from 'lucide-react';
+import { Layout, Type, AlignLeft, ImageIcon, Save, Loader2, } from 'lucide-react';
 
 const UpdateHero = () => {
-    const [heroData, setHeroData] = useState({
+    const [heroUpdate, setHeroUpdate] = useState({
         title: '',
         subtitle: '',
-        backgroundImage: '' 
+        backgroundImage: ''
     });
     const [loading, setLoading] = useState(false);
 
@@ -14,22 +14,22 @@ const UpdateHero = () => {
         axios.get(`${import.meta.env.VITE_API_URL}/api/hero`)
             .then(res => {
                 if (res.data) {
-                    setHeroData(res.data);
+                    setHeroUpdate(res.data);
                 }
             })
             .catch(err => console.error("Error fetching hero data:", err));
     }, []);
 
-    const handleChange = (e) => {
+    const handleHeroChange = (e) => {
         const { name, value } = e.target;
-        setHeroData({ ...heroData, [name]: value });
+        setHeroUpdate({ ...heroUpdate, [name]: value });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setLoading(true);
 
-        axios.put(`${import.meta.env.VITE_API_URL}/api/hero`, heroData)
+        axios.put(`${import.meta.env.VITE_API_URL}/api/hero`, heroUpdate)
             .then(res => {
                 if (res.data.success) {
                     alert('Hero section updated successfully!');
@@ -62,7 +62,7 @@ const UpdateHero = () => {
                     <h3 className="font-bold text-gray-700 flex items-center gap-2">
                         <SettingsIcon className="w-4 h-4" /> Edit Content
                     </h3>
-                    
+
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div className="space-y-2">
                             <label className="text-xs font-bold text-gray-400 uppercase ml-1">Main Headline</label>
@@ -71,8 +71,8 @@ const UpdateHero = () => {
                                 <input
                                     type="text"
                                     name="title"
-                                    value={heroData.title}
-                                    onChange={handleChange}
+                                    value={heroUpdate.title}
+                                    onChange={handleHeroChange}
                                     className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                                     placeholder="Enter Hero Title"
                                     required
@@ -86,8 +86,8 @@ const UpdateHero = () => {
                                 <AlignLeft className="absolute left-3 top-3 text-gray-400" size={18} />
                                 <textarea
                                     name="subtitle"
-                                    value={heroData.subtitle}
-                                    onChange={handleChange}
+                                    value={heroUpdate.subtitle}
+                                    onChange={handleHeroChange}
                                     rows="4"
                                     className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                                     placeholder="Enter Subtitle"
@@ -103,8 +103,8 @@ const UpdateHero = () => {
                                 <input
                                     type="text"
                                     name="backgroundImage"
-                                    value={heroData.backgroundImage || ""}
-                                    onChange={handleChange}
+                                    value={heroUpdate.backgroundImage || ""}
+                                    onChange={handleHeroChange}
                                     className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-xl outline-none focus:ring-2 focus:ring-primary/20 transition-all"
                                     placeholder="https://image-link.com/bg.jpg"
                                     required
@@ -115,9 +115,8 @@ const UpdateHero = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className={`w-full py-4 rounded-2xl font-bold text-white shadow-lg transition-all flex items-center justify-center gap-2 ${
-                                loading ? 'bg-gray-400' : 'bg-primary hover:shadow-primary/30 active:scale-95'
-                            }`}
+                            className={`w-full py-4 rounded-2xl font-bold text-white shadow-lg transition-all flex items-center justify-center gap-2 ${loading ? 'bg-gray-400' : 'bg-primary hover:shadow-primary/30 active:scale-95'
+                                }`}
                         >
                             {loading ? <Loader2 className="animate-spin" size={20} /> : <Save size={20} />}
                             {loading ? 'Saving Changes...' : 'Publish Update'}
@@ -129,7 +128,7 @@ const UpdateHero = () => {
     );
 };
 
-const SettingsIcon = ({className}) => (
+const SettingsIcon = ({ className }) => (
     <svg className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
     </svg>

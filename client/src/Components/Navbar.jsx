@@ -27,10 +27,10 @@ const Navbar = () => {
         <nav className="hidden md:block">
           <ul className="flex gap-6 text-gray-700 font-medium">
             <li onClick={() => navigate('/')} className="hover:text-primary cursor-pointer">Home</li>
-            <li className="hover:text-primary cursor-pointer">About</li>
-            <li className="hover:text-primary cursor-pointer">Service</li>
-            <li className="hover:text-primary cursor-pointer">Products</li>
-            <li className="hover:text-primary cursor-pointer">Blog</li>
+            <li className={typography.menuLi}>About</li>
+            <li className={typography.menuLi}>Service</li>
+            <li className={typography.menuLi}>Products</li>
+            <li className={typography.menuLi}>Blog</li>
           </ul>
         </nav>
 

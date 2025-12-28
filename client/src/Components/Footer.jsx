@@ -17,9 +17,10 @@ import img6 from "../assets/rocket.png";
 import img7 from "../assets/surecash.png";
 import img8 from "../assets/taptap.png";
 import img9 from "../assets/upai.png";
+import { typography } from "../style/typoghraphy";
 
 const Footer = () => {
-  const [copied, setCopied] = useState(false);
+  const [copy, setCopy] = useState(false);
   const email = "info@zaheen.com";
   const address = "29 SE 2nd Ave, Miami Florida 33131, United States";
 
@@ -28,8 +29,8 @@ const Footer = () => {
   // Email Copy Function
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000); 
+    setCopy(true);
+    setTimeout(() => setCopy(false), 2000); 
   };
 
   // Google Map Open Function
@@ -61,13 +62,13 @@ const Footer = () => {
             <MailIcon size={18} />
             <p>{email}</p>
             <div onClick={handleCopyEmail} className="cursor-pointer transition-all">
-              {copied ? (
+              {copy ? (
                 <CheckIcon size={16} className="text-green-600" />
               ) : (
                 <CopyIcon size={16} className="opacity-70 hover:opacity-100 hover:text-primary" />
               )}
             </div>
-            {copied && <span className="text-[10px] text-green-600 font-bold animate-pulse">Copied!</span>}
+            {copy && <span className="text-[10px] text-green-600 font-bold animate-pulse">Copied!</span>}
           </div>
 
           <p className="text-gray-600 text-sm">(+92) 3942 7879</p>
@@ -76,23 +77,23 @@ const Footer = () => {
         {/* Links */}
         <div className="flex gap-16">
           <ul className="space-y-3 text-sm">
-            <h3 className="font-semibold text-gray-900 mb-2">Important Links</h3>
-            <li className="hover:text-primary cursor-pointer transition-colors">About</li>
-            <li className="hover:text-primary cursor-pointer transition-colors">Service</li>
-            <li className="hover:text-primary cursor-pointer transition-colors">Blog</li>
+            <h3 className={typography.footerLinks2}>Important Links</h3>
+            <li className={typography.footerLinks}>About</li>
+            <li className={typography.footerLinks}>Service</li>
+            <li className={typography.footerLinks}>Blog</li>
           </ul>
 
           <ul className="space-y-3 text-sm">
-            <h3 className="font-semibold text-gray-900 mb-2">Information</h3>
-            <li className="hover:text-primary cursor-pointer transition-colors">My Account</li>
-            <li className="hover:text-primary cursor-pointer transition-colors">Corporate Enquiries</li>
-            <li className="hover:text-primary cursor-pointer transition-colors">FAQs</li>
+            <h3 className={typography.footerLinks2}>Information</h3>
+            <li className={typography.footerLinks}>My Account</li>
+            <li className={typography.footerLinks}>Corporate Enquiries</li>
+            <li className={typography.footerLinks}>FAQs</li>
           </ul>
         </div>
 
         {/* Payments */}
         <div>
-          <h3 className="font-semibold text-gray-900 mb-4">Payment Channels</h3>
+          <h3 className={typography.footerLinks2}>Payment Channels</h3>
 
           <div className="flex flex-wrap gap-3">
             {payments.map((pay, index) => (
@@ -120,15 +121,15 @@ const Footer = () => {
           </p>
 
           <div className="flex items-center gap-5">
-            <FacebookIcon className="cursor-pointer hover:text-primary transition-colors" size={18} />
-            <TwitchIcon className="cursor-pointer hover:text-primary transition-colors" size={18} />
-            <InstagramIcon className="cursor-pointer hover:text-primary transition-colors" size={18} />
+            <FacebookIcon className={typography.footerLinks}size={18} />
+            <TwitchIcon className={typography.footerLinks} size={18} />
+            <InstagramIcon className={typography.footerLinks} size={18} />
           </div>
 
           <div className="flex gap-4">
-            <span className="cursor-pointer hover:text-primary transition-colors">Terms</span>
-            <span className="cursor-pointer hover:text-primary transition-colors">Refund</span>
-            <span className="cursor-pointer hover:text-primary transition-colors">Privacy</span>
+            <span className={typography.footerLinks}>Terms</span>
+            <span className={typography.footerLinks}>Refund</span>
+            <span className={typography.footerLinks}>Privacy</span>
           </div>
         </div>
       </div>
